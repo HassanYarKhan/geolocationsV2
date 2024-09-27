@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Default Roboto font */
+  background-color: #f0f4f8; /* Light blue background */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.form {
+  padding-top: 1rem;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  transition: box-shadow 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* MUI-like elevation effect */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #1565c0; /* Primary blue color */
+}
+
+select, input[type="text"], textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #90caf9; /* Light blue border */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  background-color: #e3f2fd; /* Light blue background */
+  transition: border-color 0.3s ease;
+}
+
+select:focus, input[type="text"]:focus, textarea:focus {
+  border-color: #1565c0; /* Focused input border in primary blue */
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.shapeInputField[readonly] {
+  border: 1px solid #90caf9; /* Light blue border */
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  background-color: #e3f2fd; /* Light blue background */
+  transition: border-color 0.3s ease;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.getLocations, .auto, .saveGeofence {
+  background-color: #1565c0; /* Primary blue background */
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.getLocations:hover, .auto:hover, .saveGeofence:hover {
+  background-color: #0d47a1; /* Darker blue on hover */
+}
+
+.radioGroup label {
+  font-weight: normal; /* Normal font weight for labels */
+  margin-bottom: 10px; /* Space between radio buttons */
+  display: flex; /* Flex display for alignment */
+  align-items: center; /* Center align text vertically */
+  color: #1565c0; /* Dark blue for text */
+}
+
+.radioGroup input[type="checkbox"], .radioGroup input[type="radio"] {
+  display: inline-block; /* Show location checkboxes */
+  margin-right: 10px; /* Space between checkbox and label */
+}
+
+.radioGroupLocations {
+  font-weight: bold !important;
+}
+
+#locationsContainer {
+  overflow-y: auto; /* Enable vertical scrolling */
+  border: 1px solid #90caf9; /* Light blue border */
+  padding: 2px; /* Padding for styling */
+  background-color: #e3f2fd; /* Light blue background */
+  text-align: center;
+}
+
+
+.locationBox {
+  margin-bottom: 10px; /* Add some space between checkboxes */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.locationBox label {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 15px;
+  }
+
+  select, input[type="text"], textarea {
+    font-size: 14px;
+  }
+
+  .wrapper {
+    gap: 15px;
+  }
+
+.toggleSwitch {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.toggleSwitch {
+  width: full;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggleSwitch label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.toggleSwitch input[type="checkbox"] {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  width: 50px;
+  height: 25px;
+  background-color: #ccc;
+  border-radius: 25px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.slider::before {
+  border: 1px solid #1565c0;
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: #f0f4f8;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s ease;
+}
+
+.locationelement {
+  color:#1565c0; 
+  margin: 0px 5px 5px 0px;
+  padding:2px 2px;
+  border: 1px solid;
+  display: inline-block;
+  width: 115px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: space-between
+}
+
+input[type="checkbox"]:checked + .slider {
+  background-color: #1565c0;
+}
+
+input[type="checkbox"]:checked + .slider::before {
+  transform: translateX(25px);
+}
+
+.coordLabelAndCount{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#coordCount{
+  width: 80px;
+  height: 5px;
+}
+
+.count{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}

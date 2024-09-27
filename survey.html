@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geofence form</title>
+    <link rel="stylesheet" href="./survey.css">
+    <link href="./css2.css?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./survey.js"></script>
+  </head>
+  <body>
+    <form class="form">
+      <div class="wrapper">
+        <div class="uname">
+          <label for="uname">Name</label>
+          <input type="text" class="validatename" name="uname" value="" required>
+        </div>
+        <div class="selectContainer">
+          <label for="geofenceType">Geofence Type</label>
+          <select name="geofenceType" id="geofenceType" required>
+            <option value="S">Start</option>
+            <option value="E">End</option>
+            <option value="P">Path</option>
+            <option value="A">Area</option>
+            <option value="W">Workshop</option>
+            <option value="L">WB</option>
+          </select>
+        </div>
+        <div class="radioGroup">
+          <label for="radioGroupLocations" class="radioGroupLocations">Area</label>
+          <div id="locationsContainer">
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="10">Barka Sayal</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="11">Argada</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="12">NK Area</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="13">NK Area</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="14">Kathara</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="15">Giridih</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="16">Amrapali</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="17">MK Area</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="18">Rajhara</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="19">Kuju</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="20">Hazaribagh</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="21">Rajrappa</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="22">Dhori</span>
+            <span class="locationelement"><input type='checkbox' name='selUsers[]' value="23">Piparwar</span>
+          </div>
+        </div>
+        <div class="shapeContainer">
+          <label for="shape">Shape</label>
+          <input type="text"class="shapeInputField" readonly>
+        </div>
+        <div class="toggleSwitch">
+          <label for="stoppageAllowed">Stoppage Allowed
+            <input type="checkbox" id="stoppageAllowed" name="stoppageAllowed" readonly>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div>
+          <label for="pollingRate" class="pollingRate">Polling Rate</label>
+          <input type="text" id="pollingRate" name="pollingRate" pattern="^\d+(\.\d+)?$" placeholder="in ms, eg. 1000">
+        </div>
+        <div class="areaBox">
+          <div class="coordLabelAndCount">
+            <label for="coordinatesList">Coordinates List</label>
+            <div class="count">
+              <label for="coordCount">Count</label>
+              <input type="text" id="coordCount" readonly>
+            </div>
+            
+          </div>
+          <textarea name="coordinatesList" id="coordinatesList" readonly></textarea>
+        </div>
+        <div class="buttonContainer">
+          <button type="button" class="getLocations">Get Locations</button>
+          <button type="button" class="auto">Auto</button>
+        </div>
+        <div class="buttonContainer">
+          <button type="button" class="saveGeofence">Save Geofence</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
