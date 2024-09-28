@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             shapeInputField.value = 'POLYGON';
         }
     });
-    shapeInputField.value = (geofenceType.value === 'P') ? 'Polyline' : ((geofenceType.value === 'L') ? 'CIRCLE' : 'POLYGON');
+    //shapeInputField.value = (geofenceType.value === 'P') ? 'Polyline' : ((geofenceType.value === 'L') ? 'CIRCLE' : 'POLYGON');
 
 
     // fetch geolocation
@@ -139,55 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     autoPollingButton.addEventListener('click', startStopAutoPolling)
-    /******************************************Reender Locations*************************************/
-    // Update needed here - Add logic for fetching locations and parsing them into an array of strings - 'locations'
-    /*
-    const locations = [
-        "Location 1",
-        "Location 2",
-        "Location 3",
-        "Location 4"
-    ];
-
-    
-    function renderCheckboxes() {
-        const container = document.getElementById('locationsContainer');
-        container.innerHTML = ''; // Clear any existing checkboxes
-    
-        locations.forEach((location, index) => {
-            // Create a div to act as a box for each location
-            const box = document.createElement('div');
-            box.className = 'locationBox'; // Add a class for styling
-    
-            // Create a label for each checkbox
-            const label = document.createElement('label');
-            label.textContent = location; // Set the location name
-    
-            // Create the checkbox input
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `location-${index}`;
-            checkbox.name = 'location';
-            checkbox.value = location;
-    
-            // Append the checkbox to the label
-            label.prepend(checkbox);
-            
-            // Append the label to the box
-            box.appendChild(label);
-    
-            // Add click event to the box to toggle the checkbox
-            box.addEventListener('click', () => {
-                checkbox.checked = !checkbox.checked; // Toggle the checkbox
-            });
-    
-            // Append the box to the container
-            container.appendChild(box);
-        });
-    }
-    renderCheckboxes();
-    */
-
+   
 
     /************************************Send Data to Backend************************************/
     const form = document.querySelector('.form');
@@ -198,6 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const formData = new FormData(form);
         formData.append('shape', shape.value);
         formData.append('stoppageAllowed', stoppageAllowed.checked ? 'true' : 'false');
+
+        for(const[values, keys] of formData.entries()){
+            console.log(`${keys} : ${values}`);
+        }
 
         /**********************POST REQUEST******************************/
         const url = 'addfence.php';
@@ -217,12 +173,65 @@ document.addEventListener('DOMContentLoaded', () => {
           .catch(error => {
             console.error('Error:', error);
           });
-        /***************************************************************/
-        //logger
-        // formData.forEach((value, key) => {
-        //     console.log((`${key} : ${value}`));
-        // })
-    })
+    });
+
+
+    
+
+
+    /***************************reset logic******************************************************/
+    const resetButton = document.querySelector('.resetButton');
+    const resetModal = document.querySelector('.modal');
+    const confirmResetButton = document.getElementById('confirmReset');
+    const cancelResetButton = document.getElementById('cancelReset');
+
+    function spinIcon() {
+        const svgIcon = document.querySelector('.resetSvg');
+        svgIcon.classList.add('spin');
+        
+        setTimeout(() => {
+          svgIcon.classList.remove('spin');
+        }, 500); 
+      }
+      
+      const closeModal = () => {
+        resetModal.classList.remove('show');
+        console.log('close Modal called!!!!!');
+        return;
+      }
+      resetButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        console.log('show modal');
+        
+    resetModal.classList.add('show'); 
+    });
+
+    confirmResetButton.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        spinIcon();
+        form.reset();
+        closeModal();
+        
+    });
+    
+    cancelResetButton.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        closeModal();
+    });
+
+    /*************************Polling Rate Check************************/
+    document.getElementById("pollingRate").addEventListener("input", function () {
+        const pollingRate = this;
+        const errorMessage = document.getElementById("error-message");
+
+        const isValid = pollingRate.checkValidity();
+        
+        if (!isValid) {
+            errorMessage.style.display = "inline";
+        } else {
+            errorMessage.style.display = "none";
+        }
+    });
 });
 
 
